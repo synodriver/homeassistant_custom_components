@@ -1,0 +1,18 @@
+{
+  "entity": {
+    "sensor": {
+      "qinping.battery": {
+        "default": "mdi:battery"
+      },
+      "qinping.humidity": {
+        "default": "mdi:water-percent"
+      },
+      "qinping.pressure": {
+        "default": "mdi:arrow-collapse-down"
+      },
+      "qinping.temperature": {
+        "default": "mdi:temperature-celsius"
+      }
+    }
+  }
+}

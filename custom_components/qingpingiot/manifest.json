@@ -1,0 +1,16 @@
+{
+  "domain": "qingpingiot",
+  "name": "qingpingiot",
+  "after_dependencies": ["http"],
+  "codeowners": ["@synodriver"],
+  "dependencies": [],
+  "documentation": "https://github.com/synodriver/homeassistant_custom_components",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/synodriver/homeassistant_custom_components/issues",
+  "loggers": ["qingping_sdk"],
+  "version": "0.0.1",
+  "requirements": ["qingping_sdk"],
+  "quality_scale": "silver",
+  "config_flow": true
+}
