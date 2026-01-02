@@ -1,0 +1,8 @@
+{
+    "name": "qingpingiot",
+    "render_readme": true,
+    "country": "CN",
+    "homeassistant": "2024.12.5",
+    "domains": ["qingpingiot"],
+    "iot_class": "cloud_polling"
+}
