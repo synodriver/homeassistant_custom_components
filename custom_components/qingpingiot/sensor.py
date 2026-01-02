@@ -111,7 +111,8 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     print("in async_setup_entry")
-    client: Client = hass.data[DOMAIN]["qingping_client"]
+    # client: Client = hass.data[DOMAIN]["qingping_client"]
+    client: Client = config_entry.runtime_data
     data = await client.get_devices()
     num_devices = data[
         "total"

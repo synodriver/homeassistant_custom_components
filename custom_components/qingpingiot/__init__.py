@@ -37,10 +37,17 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # create client
     client = Client(app_key, app_secret, client_session=session, close_on_exit=False)
     await client.__aenter__()  # 等待刷新access_token
-    hass.data[DOMAIN]["qingping_client"] = client
+    # hass.data[DOMAIN]["qingping_client"] = client
+    entry.runtime_data = client
 
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     entry.async_on_unload(entry.add_update_listener(_async_update_listener))
+
+    @callback
+    async def async_close_connection(event: Event) -> None:
+        """Close qingping connection on HA Stop."""
+        await client.__aexit__(None, None, None)
+    entry.async_on_unload(hass.bus.async_listen_once(EVENT_HOMEASSISTANT_STOP, async_close_connection))
     return True
 
 
@@ -52,8 +59,7 @@ async def _async_update_listener(hass: HomeAssistant, entry: ConfigEntry) -> Non
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload qingping sensors."""
     if unload_ok := await hass.config_entries.async_unload_platforms(entry, PLATFORMS):
-        client: Client = hass.data[DOMAIN]["qingping_client"]
+        client: Client = entry.runtime_data
         await client.__aexit__(None, None, None)
-        hass.data[DOMAIN].pop("qingping_client")
     _LOGGER.info(f"qingping in async_unload_entry {unload_ok}")
     return unload_ok
