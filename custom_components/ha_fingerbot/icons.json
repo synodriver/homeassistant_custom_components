@@ -1,0 +1,17 @@
+{
+  "entity": {
+    "button": {
+      "press": {"default": "mdi:gesture-tap-button"}
+    },
+    "number": {
+      "push_depth": {"default": "mdi:arrow-collapse-vertical"},
+      "last_time": {"default": "mdi:timer-outline"},
+      "continue_num": {"default": "mdi:counter"},
+      "continue_time": {"default": "mdi:timer-sync-outline"}
+    }
+  },
+  "services": {
+    "press": {"service": "mdi:gesture-tap-button"}
+  }
+}
+

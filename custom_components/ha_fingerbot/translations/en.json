@@ -1,0 +1,42 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add Fingerbot",
+        "description": "Enter the Fingerbot HTTP control endpoint, including any reverse-proxy path.",
+        "data": {"url": "Control endpoint"}
+      }
+    },
+    "error": {"invalid_url": "Enter a valid HTTP or HTTPS URL."},
+    "abort": {
+      "already_configured": "This endpoint is already configured.",
+      "already_in_progress": "Configuration is already in progress."
+    }
+  },
+  "entity": {
+    "button": {"press": {"name": "Press"}},
+    "number": {
+      "push_depth": {"name": "Push depth"},
+      "last_time": {"name": "Push time"},
+      "continue_num": {"name": "Click count"},
+      "continue_time": {"name": "Click interval"}
+    }
+  },
+  "exceptions": {
+    "invalid_device_id": {"message": "Device ID {device_id} is not a Fingerbot device."},
+    "config_entry_not_found": {"message": "No loaded Fingerbot entry was found for device {device_id}."}
+  },
+  "services": {
+    "press": {
+      "name": "Press",
+      "description": "Press a Fingerbot with the supplied parameters.",
+      "fields": {
+        "device_id": {"name": "Device", "description": "Fingerbot to control."},
+        "pushDepth": {"name": "Push depth", "description": "Press depth."},
+        "lastTime": {"name": "Push time", "description": "Press duration in seconds."},
+        "continueNum": {"name": "Click count", "description": "Number of clicks."},
+        "continueTime": {"name": "Click interval", "description": "Interval between clicks in seconds."}
+      }
+    }
+  }
+}
