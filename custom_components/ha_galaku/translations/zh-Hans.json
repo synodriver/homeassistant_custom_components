@@ -1,0 +1,34 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "选择 GALAKU 设备",
+        "description": "选择通过蓝牙发现的 GK36。",
+        "data": {"address": "设备"}
+      },
+      "bluetooth_confirm": {
+        "title": "添加 GALAKU GK36",
+        "description": "要设置 {name} 吗？"
+      }
+    },
+    "abort": {
+      "already_configured": "此设备已经配置。",
+      "already_in_progress": "配置已经在进行中。",
+      "no_devices_found": "未发现 GALAKU GK36 设备。",
+      "not_supported": "该蓝牙设备不是支持的 GALAKU GK36。"
+    }
+  },
+  "entity": {
+    "device_tracker": {"device_tracker": {"name": "存在状态"}},
+    "number": {
+      "vibration_intensity": {"name": "震动强度"},
+      "electric_intensity": {"name": "电击强度"}
+    },
+    "sensor": {"signal_strength": {"name": "信号强度"}},
+    "switch": {
+      "output": {"name": "震动输出"},
+      "electric_output": {"name": "电击输出"}
+    }
+  }
+}

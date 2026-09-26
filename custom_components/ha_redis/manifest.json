@@ -1,0 +1,12 @@
+{
+  "domain": "ha_redis",
+  "name": "Redis",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://redis.io/docs/latest/",
+  "integration_type": "service",
+  "iot_class": "local_polling",
+  "loggers": ["redis"],
+  "requirements": ["redis>=5.0.0,<7"],
+  "version": "1.0.0"
+}

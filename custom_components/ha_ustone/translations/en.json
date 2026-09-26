@@ -1,0 +1,62 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add USTONE BLE device",
+        "description": "Enter the device MAC address. You can also enter a discovered address.",
+        "data": {"address": "MAC address"}
+      },
+      "bluetooth_confirm": {
+        "title": "USTONE BLE device discovered",
+        "description": "Do you want to add {name}?"
+      }
+    },
+    "error": {
+      "invalid_address": "The MAC address is invalid.",
+      "invalid_device_id": "The device is invalid.",
+      "config_entry_not_found": "The loaded device entry could not be found.",
+      "device_not_found": "The device is not currently connectable: {reason}.",
+      "characteristic_not_found": "The USTONE Nordic UART characteristics were not found.",
+      "communication_error": "Communication with the device failed: {error}."
+    },
+    "abort": {
+      "already_configured": "This device is already configured.",
+      "not_supported": "The advertisement is not a supported USTONE BLE frame."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery": {"name": "Battery"},
+      "temperature": {"name": "Temperature"},
+      "humidity": {"name": "Humidity"},
+      "illuminance": {"name": "Illuminance"},
+      "pressure": {"name": "Pressure"},
+      "signal_strength": {"name": "Signal strength"}
+    },
+    "binary_sensor": {
+      "occupancy": {"name": "Occupancy"},
+      "door": {"name": "Door"},
+      "water_leak": {"name": "Water leak"},
+      "button": {"name": "Button"}
+    },
+    "device_tracker": {"device_tracker": {"name": "Online status"}}
+  },
+  "exceptions": {
+    "invalid_device_id": {"message": "The device ID does not belong to a USTONE device."},
+    "config_entry_not_found": {"message": "No loaded USTONE entry was found for {address}."},
+    "device_not_found": {"message": "Could not connect to USTONE device {address}: {reason}"},
+    "characteristic_not_found": {"message": "The USTONE Nordic UART characteristics were not found."},
+    "communication_error": {"message": "Communication with the USTONE device failed: {error}"}
+  },
+  "services": {
+    "set_config": {
+      "name": "Write device configuration",
+      "description": "Write JSON configuration over a one-shot BLE GATT connection.",
+      "fields": {
+        "device_id": {"name": "Device", "description": "USTONE device to configure."},
+        "config": {"name": "Configuration", "description": "USTONE configuration object to write."},
+        "timeout": {"name": "Timeout", "description": "Seconds to wait for the device response."}
+      }
+    }
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "entity": {
+    "sensor": {
+      "redis_version": {
+        "default": "mdi:tag-outline"
+      },
+      "redis_mode": {
+        "default": "mdi:database-cog"
+      },
+      "process_id": {
+        "default": "mdi:identifier"
+      },
+      "tcp_port": {
+        "default": "mdi:ethernet"
+      },
+      "hz": {
+        "default": "mdi:sync"
+      },
+      "connected_clients": {
+        "default": "mdi:account-multiple"
+      },
+      "maxclients": {
+        "default": "mdi:account-multiple-outline"
+      },
+      "blocked_clients": {
+        "default": "mdi:account-lock-outline"
+      },
+      "pubsub_clients": {
+        "default": "mdi:message-processing"
+      },
+      "pubsub_channels": {
+        "default": "mdi:message"
+      },
+      "pubsub_patterns": {
+        "default": "mdi:message-alert"
+      },
+      "used_memory": {
+        "default": "mdi:memory"
+      },
+      "used_memory_rss": {
+        "default": "mdi:memory"
+      },
+      "used_memory_peak": {
+        "default": "mdi:memory"
+      },
+      "used_memory_overhead": {
+        "default": "mdi:memory"
+      },
+      "used_memory_startup": {
+        "default": "mdi:memory"
+      },
+      "used_memory_dataset": {
+        "default": "mdi:database"
+      },
+      "maxmemory": {
+        "default": "mdi:database-outline"
+      },
+      "maxmemory_policy": {
+        "default": "mdi:shield-lock-outline"
+      },
+      "total_system_memory": {
+        "default": "mdi:memory"
+      },
+      "mem_fragmentation_ratio": {
+        "default": "mdi:chart-donut"
+      },
+      "allocator_frag_ratio": {
+        "default": "mdi:chart-pie"
+      },
+      "allocator_rss_ratio": {
+        "default": "mdi:chart-pie"
+      },
+      "lazyfree_pending_objects": {
+        "default": "mdi:auto-fix"
+      },
+      "loading": {
+        "default": "mdi:progress-download"
+      },
+      "rdb_bgsave_in_progress": {
+        "default": "mdi:content-save-move"
+      },
+      "rdb_last_bgsave_status": {
+        "default": "mdi:content-save-check"
+      },
+      "rdb_changes_since_last_save": {
+        "default": "mdi:content-save-edit"
+      },
+      "rdb_last_save_time": {
+        "default": "mdi:content-save"
+      },
+      "aof_enabled": {
+        "default": "mdi:file-document-plus"
+      },
+      "aof_rewrite_in_progress": {
+        "default": "mdi:file-document-refresh"
+      },
+      "aof_last_write_status": {
+        "default": "mdi:file-document-check"
+      },
+      "total_connections_received": {
+        "default": "mdi:connection"
+      },
+      "rejected_connections": {
+        "default": "mdi:link-off"
+      },
+      "total_commands_processed": {
+        "default": "mdi:console-line"
+      },
+      "instantaneous_ops_per_sec": {
+        "default": "mdi:speedometer"
+      },
+      "total_net_input_bytes": {
+        "default": "mdi:download-network"
+      },
+      "total_net_output_bytes": {
+        "default": "mdi:upload-network"
+      },
+      "instantaneous_input_kbps": {
+        "default": "mdi:gauge"
+      },
+      "instantaneous_output_kbps": {
+        "default": "mdi:gauge"
+      },
+      "keyspace_hits": {
+        "default": "mdi:target"
+      },
+      "keyspace_misses": {
+        "default": "mdi:minus-circle-outline"
+      },
+      "expired_keys": {
+        "default": "mdi:key-remove"
+      },
+      "evicted_keys": {
+        "default": "mdi:key-alert"
+      },
+      "sync_full": {
+        "default": "mdi:sync"
+      },
+      "sync_partial_ok": {
+        "default": "mdi:check-circle-outline"
+      },
+      "sync_partial_err": {
+        "default": "mdi:sync-alert"
+      },
+      "latest_fork_usec": {
+        "default": "mdi:timeline-clock-outline"
+      },
+      "total_reads_processed": {
+        "default": "mdi:download"
+      },
+      "total_writes_processed": {
+        "default": "mdi:upload"
+      },
+      "total_error_replies": {
+        "default": "mdi:alert-circle-outline"
+      },
+      "role": {
+        "default": "mdi:server-security"
+      },
+      "connected_slaves": {
+        "default": "mdi:server-plus"
+      },
+      "master_link_status": {
+        "default": "mdi:link-variant"
+      },
+      "repl_backlog_size": {
+        "default": "mdi:database-sync"
+      },
+      "used_cpu_sys": {
+        "default": "mdi:cpu-64-bit"
+      },
+      "used_cpu_user": {
+        "default": "mdi:cpu-64-bit"
+      },
+      "used_cpu_sys_children": {
+        "default": "mdi:cpu-64-bit"
+      },
+      "used_cpu_user_children": {
+        "default": "mdi:cpu-64-bit"
+      },
+      "keyspace_keys": {
+        "default": "mdi:key-variant"
+      },
+      "keyspace_expires": {
+        "default": "mdi:timer-sand"
+      },
+      "database_count": {
+        "default": "mdi:database"
+      }
+    },
+    "device_tracker": {
+      "redis_server": {
+        "default": "mdi:server-network"
+      }
+    }
+  },
+  "services": {
+    "send_command": {
+      "service": "mdi:console"
+    }
+  }
+}

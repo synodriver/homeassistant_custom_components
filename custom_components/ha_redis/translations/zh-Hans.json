@@ -1,0 +1,268 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "服务已完成配置。",
+      "reauth_successful": "重新认证成功。"
+    },
+    "step": {
+      "user": {
+        "title": "连接到 Redis",
+        "description": "请输入 Redis 服务器的连接信息。",
+        "data": {
+          "host": "主机",
+          "port": "端口",
+          "username": "用户名",
+          "password": "密码"
+        },
+        "data_description": {
+          "host": "Redis 服务器的主机名或 IP 地址。",
+          "port": "Redis 服务器的端口。",
+          "username": "Redis ACL 用户名。留空则使用默认用户。",
+          "password": "用于 Redis 认证的密码，未设置密码时请留空。"
+        }
+      },
+      "reauth_confirm": {
+        "title": "重新认证 Redis",
+        "description": "请输入 Redis 服务器 {name} 的新 ACL 用户名和密码。用户名留空则使用默认用户；无密码时请留空。",
+        "data": {
+          "username": "用户名",
+          "password": "密码"
+        },
+        "data_description": {
+          "username": "Redis ACL 用户名。留空则使用默认用户。",
+          "password": "新的 Redis 认证密码，未设置密码时请留空。"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "无法连接到 Redis 服务器。",
+      "invalid_auth": "认证失败，请检查用户名和密码。",
+      "invalid_host": "请输入有效的主机名或 IP 地址。"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "redis_version": {
+        "name": "Redis 版本"
+      },
+      "redis_mode": {
+        "name": "Redis 运行模式"
+      },
+      "process_id": {
+        "name": "进程 ID"
+      },
+      "tcp_port": {
+        "name": "TCP 端口"
+      },
+      "hz": {
+        "name": "服务器时钟频率"
+      },
+      "connected_clients": {
+        "name": "已连接客户端"
+      },
+      "maxclients": {
+        "name": "最大客户端数"
+      },
+      "blocked_clients": {
+        "name": "阻塞客户端"
+      },
+      "pubsub_clients": {
+        "name": "发布订阅客户端"
+      },
+      "pubsub_channels": {
+        "name": "发布订阅频道"
+      },
+      "pubsub_patterns": {
+        "name": "发布订阅模式"
+      },
+      "used_memory": {
+        "name": "已用内存"
+      },
+      "used_memory_rss": {
+        "name": "RSS 内存"
+      },
+      "used_memory_peak": {
+        "name": "峰值内存使用"
+      },
+      "used_memory_overhead": {
+        "name": "内存开销"
+      },
+      "used_memory_startup": {
+        "name": "启动内存"
+      },
+      "used_memory_dataset": {
+        "name": "数据集内存"
+      },
+      "maxmemory": {
+        "name": "最大内存"
+      },
+      "maxmemory_policy": {
+        "name": "内存淘汰策略"
+      },
+      "total_system_memory": {
+        "name": "系统总内存"
+      },
+      "mem_fragmentation_ratio": {
+        "name": "内存碎片率"
+      },
+      "allocator_frag_ratio": {
+        "name": "分配器碎片率"
+      },
+      "allocator_rss_ratio": {
+        "name": "分配器 RSS 比率"
+      },
+      "lazyfree_pending_objects": {
+        "name": "待惰性删除对象"
+      },
+      "loading": {
+        "name": "正在加载数据集"
+      },
+      "rdb_bgsave_in_progress": {
+        "name": "RDB 保存进行中"
+      },
+      "rdb_last_bgsave_status": {
+        "name": "上次 RDB 保存状态"
+      },
+      "rdb_changes_since_last_save": {
+        "name": "自上次保存后的变更数"
+      },
+      "rdb_last_save_time": {
+        "name": "上次 RDB 保存时间"
+      },
+      "aof_enabled": {
+        "name": "AOF 已启用"
+      },
+      "aof_rewrite_in_progress": {
+        "name": "AOF 重写进行中"
+      },
+      "aof_last_write_status": {
+        "name": "上次 AOF 写入状态"
+      },
+      "total_connections_received": {
+        "name": "累计连接数"
+      },
+      "rejected_connections": {
+        "name": "被拒绝连接数"
+      },
+      "total_commands_processed": {
+        "name": "累计处理命令数"
+      },
+      "instantaneous_ops_per_sec": {
+        "name": "每秒操作数"
+      },
+      "total_net_input_bytes": {
+        "name": "累计网络输入"
+      },
+      "total_net_output_bytes": {
+        "name": "累计网络输出"
+      },
+      "instantaneous_input_kbps": {
+        "name": "网络输入速率"
+      },
+      "instantaneous_output_kbps": {
+        "name": "网络输出速率"
+      },
+      "keyspace_hits": {
+        "name": "键空间命中"
+      },
+      "keyspace_misses": {
+        "name": "键空间未命中"
+      },
+      "expired_keys": {
+        "name": "已过期键"
+      },
+      "evicted_keys": {
+        "name": "已淘汰键"
+      },
+      "sync_full": {
+        "name": "全量同步次数"
+      },
+      "sync_partial_ok": {
+        "name": "成功部分同步次数"
+      },
+      "sync_partial_err": {
+        "name": "失败部分同步次数"
+      },
+      "latest_fork_usec": {
+        "name": "最近 fork 耗时"
+      },
+      "total_reads_processed": {
+        "name": "累计读取数"
+      },
+      "total_writes_processed": {
+        "name": "累计写入数"
+      },
+      "total_error_replies": {
+        "name": "累计错误响应数"
+      },
+      "role": {
+        "name": "角色"
+      },
+      "connected_slaves": {
+        "name": "已连接副本数"
+      },
+      "master_link_status": {
+        "name": "主节点连接状态"
+      },
+      "repl_backlog_size": {
+        "name": "复制积压缓冲区大小"
+      },
+      "used_cpu_sys": {
+        "name": "CPU 系统时间"
+      },
+      "used_cpu_user": {
+        "name": "CPU 用户时间"
+      },
+      "used_cpu_sys_children": {
+        "name": "CPU 系统时间（子进程）"
+      },
+      "used_cpu_user_children": {
+        "name": "CPU 用户时间（子进程）"
+      },
+      "keyspace_keys": {
+        "name": "数据库键总数"
+      },
+      "keyspace_expires": {
+        "name": "带 TTL 的键总数"
+      },
+      "database_count": {
+        "name": "数据库数量"
+      }
+    },
+    "device_tracker": {
+      "redis_server": {
+        "name": "Redis 服务器"
+      }
+    }
+  },
+  "services": {
+    "send_command": {
+      "name": "发送命令",
+      "description": "向 Redis 服务器发送任意命令并返回其响应。",
+      "fields": {
+        "device_id": {
+          "name": "设备",
+          "description": "接收该命令的 Redis 服务器。"
+        },
+        "command": {
+          "name": "命令",
+          "description": "完整的 Redis 命令，例如 GET foo 或 SET foo bar。"
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "device_not_found": {
+      "message": "所选设备不属于已配置的 Redis 服务器。"
+    },
+    "config_entry_not_loaded": {
+      "message": "Redis 集成尚未加载。"
+    },
+    "empty_command": {
+      "message": "Redis 命令不能为空。"
+    },
+    "invalid_command": {
+      "message": "Redis 命令格式无效。"
+    }
+  }
+}

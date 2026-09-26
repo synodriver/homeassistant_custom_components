@@ -1,0 +1,268 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Service is already configured",
+      "reauth_successful": "Successfully reauthenticated."
+    },
+    "step": {
+      "user": {
+        "title": "Connect to Redis",
+        "description": "Enter the connection details for your Redis server.",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "username": "Username",
+          "password": "Password"
+        },
+        "data_description": {
+          "host": "Hostname or IP address of the Redis server.",
+          "port": "Port of the Redis server.",
+          "username": "Redis ACL username. Leave empty to use the default user.",
+          "password": "Password used for Redis authentication. Leave empty when no password is set."
+        }
+      },
+      "reauth_confirm": {
+        "title": "Reauthenticate Redis",
+        "description": "Enter the new Redis ACL username and password for Redis server {name}. Leave the username empty to use the default user, and the password empty to connect without a password.",
+        "data": {
+          "username": "Username",
+          "password": "Password"
+        },
+        "data_description": {
+          "username": "Redis ACL username. Leave empty to use the default user.",
+          "password": "New Redis password. Leave empty when no password is set."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the Redis server.",
+      "invalid_auth": "Authentication failed. Check the username and password.",
+      "invalid_host": "Enter a valid hostname or IP address."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "redis_version": {
+        "name": "Redis version"
+      },
+      "redis_mode": {
+        "name": "Redis mode"
+      },
+      "process_id": {
+        "name": "Process ID"
+      },
+      "tcp_port": {
+        "name": "TCP port"
+      },
+      "hz": {
+        "name": "Server frequency"
+      },
+      "connected_clients": {
+        "name": "Connected clients"
+      },
+      "maxclients": {
+        "name": "Max clients"
+      },
+      "blocked_clients": {
+        "name": "Blocked clients"
+      },
+      "pubsub_clients": {
+        "name": "Pub/Sub clients"
+      },
+      "pubsub_channels": {
+        "name": "Pub/Sub channels"
+      },
+      "pubsub_patterns": {
+        "name": "Pub/Sub patterns"
+      },
+      "used_memory": {
+        "name": "Used memory"
+      },
+      "used_memory_rss": {
+        "name": "RSS memory"
+      },
+      "used_memory_peak": {
+        "name": "Peak used memory"
+      },
+      "used_memory_overhead": {
+        "name": "Memory overhead"
+      },
+      "used_memory_startup": {
+        "name": "Startup memory"
+      },
+      "used_memory_dataset": {
+        "name": "Dataset memory"
+      },
+      "maxmemory": {
+        "name": "Max memory"
+      },
+      "maxmemory_policy": {
+        "name": "Max memory policy"
+      },
+      "total_system_memory": {
+        "name": "Total system memory"
+      },
+      "mem_fragmentation_ratio": {
+        "name": "Memory fragmentation ratio"
+      },
+      "allocator_frag_ratio": {
+        "name": "Allocator fragmentation ratio"
+      },
+      "allocator_rss_ratio": {
+        "name": "Allocator RSS ratio"
+      },
+      "lazyfree_pending_objects": {
+        "name": "Lazy free pending objects"
+      },
+      "loading": {
+        "name": "Loading dataset"
+      },
+      "rdb_bgsave_in_progress": {
+        "name": "RDB save in progress"
+      },
+      "rdb_last_bgsave_status": {
+        "name": "Last RDB save status"
+      },
+      "rdb_changes_since_last_save": {
+        "name": "Changes since last save"
+      },
+      "rdb_last_save_time": {
+        "name": "Last RDB save time"
+      },
+      "aof_enabled": {
+        "name": "AOF enabled"
+      },
+      "aof_rewrite_in_progress": {
+        "name": "AOF rewrite in progress"
+      },
+      "aof_last_write_status": {
+        "name": "Last AOF write status"
+      },
+      "total_connections_received": {
+        "name": "Total connections received"
+      },
+      "rejected_connections": {
+        "name": "Rejected connections"
+      },
+      "total_commands_processed": {
+        "name": "Total commands processed"
+      },
+      "instantaneous_ops_per_sec": {
+        "name": "Operations per second"
+      },
+      "total_net_input_bytes": {
+        "name": "Total network input"
+      },
+      "total_net_output_bytes": {
+        "name": "Total network output"
+      },
+      "instantaneous_input_kbps": {
+        "name": "Network input rate"
+      },
+      "instantaneous_output_kbps": {
+        "name": "Network output rate"
+      },
+      "keyspace_hits": {
+        "name": "Keyspace hits"
+      },
+      "keyspace_misses": {
+        "name": "Keyspace misses"
+      },
+      "expired_keys": {
+        "name": "Expired keys"
+      },
+      "evicted_keys": {
+        "name": "Evicted keys"
+      },
+      "sync_full": {
+        "name": "Full synchronizations"
+      },
+      "sync_partial_ok": {
+        "name": "Successful partial syncs"
+      },
+      "sync_partial_err": {
+        "name": "Failed partial syncs"
+      },
+      "latest_fork_usec": {
+        "name": "Latest fork time"
+      },
+      "total_reads_processed": {
+        "name": "Total reads processed"
+      },
+      "total_writes_processed": {
+        "name": "Total writes processed"
+      },
+      "total_error_replies": {
+        "name": "Total error replies"
+      },
+      "role": {
+        "name": "Role"
+      },
+      "connected_slaves": {
+        "name": "Connected replicas"
+      },
+      "master_link_status": {
+        "name": "Master link status"
+      },
+      "repl_backlog_size": {
+        "name": "Replication backlog size"
+      },
+      "used_cpu_sys": {
+        "name": "CPU system time"
+      },
+      "used_cpu_user": {
+        "name": "CPU user time"
+      },
+      "used_cpu_sys_children": {
+        "name": "CPU system time (children)"
+      },
+      "used_cpu_user_children": {
+        "name": "CPU user time (children)"
+      },
+      "keyspace_keys": {
+        "name": "Keys in databases"
+      },
+      "keyspace_expires": {
+        "name": "Keys with TTL"
+      },
+      "database_count": {
+        "name": "Database count"
+      }
+    },
+    "device_tracker": {
+      "redis_server": {
+        "name": "Redis server"
+      }
+    }
+  },
+  "services": {
+    "send_command": {
+      "name": "Send command",
+      "description": "Sends an arbitrary command to a Redis server and returns its response.",
+      "fields": {
+        "device_id": {
+          "name": "Device",
+          "description": "Redis server that receives the command."
+        },
+        "command": {
+          "name": "Command",
+          "description": "Full Redis command, for example GET foo or SET foo bar."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "device_not_found": {
+      "message": "The selected device does not belong to a configured Redis server."
+    },
+    "config_entry_not_loaded": {
+      "message": "The Redis integration is not loaded."
+    },
+    "empty_command": {
+      "message": "The Redis command is empty."
+    },
+    "invalid_command": {
+      "message": "The Redis command is invalid."
+    }
+  }
+}

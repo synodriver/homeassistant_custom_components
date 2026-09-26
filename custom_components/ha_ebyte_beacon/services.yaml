@@ -1,0 +1,25 @@
+send_at_command:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: ha_ebyte_beacon
+    command:
+      required: true
+      example: "AT+POWER?"
+      selector:
+        text:
+    password:
+      required: false
+      example: "1234"
+      selector:
+        text:
+          type: password
+    timeout:
+      default: 5
+      selector:
+        number:
+          min: 1
+          max: 60
+          unit_of_measurement: seconds

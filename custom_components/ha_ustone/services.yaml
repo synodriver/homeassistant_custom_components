@@ -1,0 +1,29 @@
+set_config:
+  name: 写入设备配置
+  description: 通过一次性 BLE GATT 连接向 USTONE 设备写入 JSON 配置。
+  fields:
+    device_id:
+      name: 设备
+      description: 要配置的 USTONE 设备。
+      required: true
+      selector:
+        device:
+          integration: ha_ustone
+    config:
+      name: 配置
+      description: 'USTONE 配置对象，例如 {"adv_interval": "1000"}。'
+      required: true
+      selector:
+        object: {}
+    timeout:
+      name: 超时
+      description: 等待设备响应的秒数。
+      required: false
+      default: 30
+      selector:
+        number:
+          min: 5
+          max: 60
+          step: 1
+          mode: slider
+          unit_of_measurement: s

@@ -1,0 +1,38 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "Select a GALAKU device",
+        "description": "Select a GK36 discovered by Bluetooth.",
+        "data": {"address": "Device"}
+      },
+      "bluetooth_confirm": {
+        "title": "Add GALAKU GK36",
+        "description": "Do you want to set up {name}?"
+      }
+    },
+    "abort": {
+      "already_configured": "This device is already configured.",
+      "already_in_progress": "Configuration is already in progress.",
+      "no_devices_found": "No GALAKU GK36 devices were discovered.",
+      "not_supported": "This Bluetooth device is not a supported GALAKU GK36."
+    }
+  },
+  "entity": {
+    "device_tracker": {
+      "device_tracker": {"name": "Presence"}
+    },
+    "number": {
+      "vibration_intensity": {"name": "Vibration intensity"},
+      "electric_intensity": {"name": "Electric intensity"}
+    },
+    "sensor": {
+      "signal_strength": {"name": "Signal strength"}
+    },
+    "switch": {
+      "output": {"name": "Vibration output"},
+      "electric_output": {"name": "Electric output"}
+    }
+  }
+}

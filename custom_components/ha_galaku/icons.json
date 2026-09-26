@@ -1,0 +1,19 @@
+{
+  "entity": {
+    "device_tracker": {
+      "device_tracker": {"default": "mdi:bluetooth"}
+    },
+    "number": {
+      "intensity": {"default": "mdi:vibrate"},
+      "vibration_intensity": {"default": "mdi:vibrate"},
+      "electric_intensity": {"default": "mdi:flash"}
+    },
+    "sensor": {
+      "signal_strength": {"default": "mdi:signal"}
+    },
+    "switch": {
+      "output": {"default": "mdi:vibrate"},
+      "electric_output": {"default": "mdi:flash"}
+    }
+  }
+}

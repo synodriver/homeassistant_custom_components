@@ -1,0 +1,26 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "connectable": {
+        "default": "mdi:bluetooth-connect"
+      },
+      "encrypted": {
+        "default": "mdi:lock"
+      }
+    },
+    "sensor": {
+      "advertising_interval": {
+        "default": "mdi:timer-sand"
+      },
+      "major": {
+        "default": "mdi:identifier"
+      },
+      "minor": {
+        "default": "mdi:identifier"
+      },
+      "tx_power_index": {
+        "default": "mdi:transmission-tower"
+      }
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Device is already configured",
+      "already_in_progress": "Configuration flow is already in progress",
+      "no_devices_found": "No devices found",
+      "not_supported": "Device not supported"
+    },
+    "flow_title": "{name}",
+    "step": {
+      "bluetooth_confirm": {
+        "description": "Do you want to set up {name}?"
+      },
+      "user": {
+        "data": {
+          "address": "Device"
+        },
+        "description": "Pick the Ebyte beacon you want to set up."
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "connectable": {
+        "name": "Connectable"
+      },
+      "encrypted": {
+        "name": "Encrypted"
+      }
+    },
+    "sensor": {
+      "acceleration_x": {
+        "name": "Acceleration X"
+      },
+      "acceleration_y": {
+        "name": "Acceleration Y"
+      },
+      "acceleration_z": {
+        "name": "Acceleration Z"
+      },
+      "advertising_interval": {
+        "name": "Advertising interval"
+      },
+      "battery": {
+        "name": "Battery"
+      },
+      "humidity": {
+        "name": "Humidity"
+      },
+      "major": {
+        "name": "iBeacon major"
+      },
+      "minor": {
+        "name": "iBeacon minor"
+      },
+      "signal_strength": {
+        "name": "Signal strength"
+      },
+      "temperature": {
+        "name": "Temperature"
+      },
+      "tx_power_index": {
+        "name": "TX power index"
+      }
+    }
+  },
+  "exceptions": {
+    "at_characteristic_not_found": {
+      "message": "The Ebyte beacon AT command characteristic was not found."
+    },
+    "at_command_failed": {
+      "message": "Failed to send AT command: {error}"
+    },
+    "at_command_timeout": {
+      "message": "Timed out waiting for the Ebyte beacon AT command response."
+    },
+    "config_entry_not_found": {
+      "message": "No loaded Ebyte Beacon config entry was found for Bluetooth address {address}."
+    },
+    "device_not_found": {
+      "message": "Could not connect to Ebyte beacon {address}: {reason}"
+    },
+    "invalid_device_id": {
+      "message": "Device ID {device_id} is not an Ebyte Beacon device."
+    },
+    "invalid_password": {
+      "message": "The Ebyte beacon rejected the AT command password."
+    },
+    "password_characteristic_not_found": {
+      "message": "The Ebyte beacon AT command password characteristic was not found."
+    }
+  },
+  "services": {
+    "send_at_command": {
+      "name": "Send AT command",
+      "description": "Send an AT command to an Ebyte beacon over Bluetooth and return the response.",
+      "fields": {
+        "command": {
+          "name": "Command",
+          "description": "AT command to send, for example AT+POWER?."
+        },
+        "device_id": {
+          "name": "Device",
+          "description": "Ebyte beacon to send the command to."
+        },
+        "password": {
+          "name": "Password",
+          "description": "Optional AT command password for password-protected beacons."
+        },
+        "timeout": {
+          "name": "Timeout",
+          "description": "Maximum time to wait for the Bluetooth connection and command response."
+        }
+      }
+    }
+  }
+}

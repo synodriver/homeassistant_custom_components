@@ -1,0 +1,19 @@
+{
+  "entity": {
+    "sensor": {
+      "battery": "mdi:battery",
+      "temperature": "mdi:thermometer",
+      "humidity": "mdi:water-percent",
+      "illuminance": "mdi:brightness-6",
+      "pressure": "mdi:gauge",
+      "signal_strength": "mdi:signal"
+    },
+    "binary_sensor": {
+      "occupancy": "mdi:motion-sensor",
+      "door": "mdi:door",
+      "water_leak": "mdi:water-alert",
+      "button": "mdi:gesture-tap-button"
+    },
+    "device_tracker": {"device_tracker": "mdi:bluetooth"}
+  }
+}

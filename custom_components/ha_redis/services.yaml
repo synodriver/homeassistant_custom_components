@@ -1,0 +1,12 @@
+send_command:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: ha_redis
+    command:
+      required: true
+      example: GET foo
+      selector:
+        text:

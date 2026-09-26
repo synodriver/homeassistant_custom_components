@@ -1,0 +1,62 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "添加 USTONE BLE 设备",
+        "description": "输入设备 MAC 地址。已发现的设备也可以直接输入其地址。",
+        "data": {"address": "MAC 地址"}
+      },
+      "bluetooth_confirm": {
+        "title": "发现 USTONE BLE 设备",
+        "description": "是否添加 {name}？"
+      }
+    },
+    "error": {
+      "invalid_address": "MAC 地址无效。",
+      "invalid_device_id": "设备无效。",
+      "config_entry_not_found": "找不到已加载的设备配置。",
+      "device_not_found": "设备当前不可连接：{reason}。",
+      "characteristic_not_found": "设备没有 USTONE Nordic UART 特征。",
+      "communication_error": "与设备通信失败：{error}。"
+    },
+    "abort": {
+      "already_configured": "设备已经配置。",
+      "not_supported": "不是受支持的 USTONE BLE 广播。"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery": {"name": "电池"},
+      "temperature": {"name": "温度"},
+      "humidity": {"name": "湿度"},
+      "illuminance": {"name": "照度"},
+      "pressure": {"name": "气压"},
+      "signal_strength": {"name": "信号强度"}
+    },
+    "binary_sensor": {
+      "occupancy": {"name": "人体检测"},
+      "door": {"name": "门磁"},
+      "water_leak": {"name": "漏水"},
+      "button": {"name": "按键"}
+    },
+    "device_tracker": {"device_tracker": {"name": "在线状态"}}
+  },
+  "exceptions": {
+    "invalid_device_id": {"message": "设备 ID 不属于 USTONE 设备。"},
+    "config_entry_not_found": {"message": "找不到地址为 {address} 的已加载 USTONE 配置。"},
+    "device_not_found": {"message": "无法连接 USTONE 设备 {address}：{reason}"},
+    "characteristic_not_found": {"message": "设备没有 USTONE Nordic UART 特征。"},
+    "communication_error": {"message": "与 USTONE 设备通信失败：{error}"}
+  },
+  "services": {
+    "set_config": {
+      "name": "写入设备配置",
+      "description": "通过一次性 BLE GATT 连接向 USTONE 设备写入 JSON 配置。",
+      "fields": {
+        "device_id": {"name": "设备", "description": "要配置的 USTONE 设备。"},
+        "config": {"name": "配置", "description": "要写入的 USTONE 配置对象。"},
+        "timeout": {"name": "超时", "description": "等待设备响应的秒数。"}
+      }
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "设备已配置",
+      "already_in_progress": "配置流程已在进行中",
+      "no_devices_found": "未发现设备",
+      "not_supported": "设备不受支持"
+    },
+    "flow_title": "{name}",
+    "step": {
+      "bluetooth_confirm": {
+        "description": "是否要设置 {name}？"
+      },
+      "user": {
+        "data": {
+          "address": "设备"
+        },
+        "description": "选择要添加的 Ebyte Beacon。"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "connectable": {
+        "name": "可连接"
+      },
+      "encrypted": {
+        "name": "已加密"
+      }
+    },
+    "sensor": {
+      "acceleration_x": {
+        "name": "X 轴加速度"
+      },
+      "acceleration_y": {
+        "name": "Y 轴加速度"
+      },
+      "acceleration_z": {
+        "name": "Z 轴加速度"
+      },
+      "advertising_interval": {
+        "name": "广播间隔"
+      },
+      "battery": {
+        "name": "电池"
+      },
+      "humidity": {
+        "name": "湿度"
+      },
+      "major": {
+        "name": "iBeacon major"
+      },
+      "minor": {
+        "name": "iBeacon minor"
+      },
+      "signal_strength": {
+        "name": "信号强度"
+      },
+      "temperature": {
+        "name": "温度"
+      },
+      "tx_power_index": {
+        "name": "发射功率索引"
+      }
+    }
+  },
+  "exceptions": {
+    "at_characteristic_not_found": {
+      "message": "未找到 Ebyte Beacon 的 AT 指令特征值。"
+    },
+    "at_command_failed": {
+      "message": "发送 AT 指令失败：{error}"
+    },
+    "at_command_timeout": {
+      "message": "等待 Ebyte Beacon AT 指令响应超时。"
+    },
+    "config_entry_not_found": {
+      "message": "未找到蓝牙地址 {address} 对应的已加载 Ebyte Beacon 配置条目。"
+    },
+    "device_not_found": {
+      "message": "无法连接 Ebyte Beacon {address}：{reason}"
+    },
+    "invalid_device_id": {
+      "message": "设备 ID {device_id} 不是 Ebyte Beacon 设备。"
+    },
+    "invalid_password": {
+      "message": "Ebyte Beacon 拒绝了 AT 指令密码。"
+    },
+    "password_characteristic_not_found": {
+      "message": "未找到 Ebyte Beacon 的 AT 指令密码特征值。"
+    }
+  },
+  "services": {
+    "send_at_command": {
+      "name": "发送 AT 指令",
+      "description": "通过蓝牙向 Ebyte Beacon 发送 AT 指令并返回响应。",
+      "fields": {
+        "command": {
+          "name": "指令",
+          "description": "要发送的 AT 指令，例如 AT+POWER?。"
+        },
+        "device_id": {
+          "name": "设备",
+          "description": "要发送指令的 Ebyte Beacon。"
+        },
+        "password": {
+          "name": "密码",
+          "description": "受密码保护的 Beacon 使用的可选 AT 指令密码。"
+        },
+        "timeout": {
+          "name": "超时时间",
+          "description": "等待蓝牙连接和指令响应的最长时间。"
+        }
+      }
+    }
+  }
+}
