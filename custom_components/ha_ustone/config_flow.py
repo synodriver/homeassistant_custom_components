@@ -4,6 +4,7 @@ from typing import Any, override
 
 import voluptuous as vol
 
+from homeassistant.components import bluetooth
 from homeassistant.components.bluetooth import (
     BluetoothServiceInfoBleak,
     async_discovered_service_info,
@@ -16,23 +17,10 @@ from .const import DOMAIN
 from .ustone_ble import UstoneProtocolError, parse_advertisement
 
 
-def _normalise_address(value: str) -> str:
-    """Validate and normalize a Bluetooth MAC address."""
-    address = format_mac(value.strip())
-    parts = address.split(":")
-    if len(parts) != 6 or any(len(part) != 2 for part in parts):
-        raise vol.Invalid("invalid Bluetooth address")
-    try:
-        bytes.fromhex("".join(parts))
-    except ValueError as err:
-        raise vol.Invalid("invalid Bluetooth address") from err
-    return address
-
-
 class UstoneConfigFlow(ConfigFlow, domain=DOMAIN):
-    """Handle automatic discovery and manual MAC setup."""
+    """Handle automatic and user initiated Bluetooth discovery."""
 
-    VERSION = 1
+    VERSION = 2
 
     def __init__(self) -> None:
         """Initialize the flow."""
@@ -52,7 +40,9 @@ class UstoneConfigFlow(ConfigFlow, domain=DOMAIN):
         address = discovery_info.address
         self._discovery_info = discovery_info
         self._discovery_title = advertisement.model_name
-        await self.async_set_unique_id(address)
+        await self.async_set_unique_id(
+            format_mac(address), raise_on_progress=False
+        )
         self._abort_if_unique_id_configured()
         return await self.async_step_bluetooth_confirm(
             title=advertisement.model_name,
@@ -95,36 +85,47 @@ class UstoneConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
-        """Allow selecting a discovered device or entering a MAC manually."""
+        """Allow selecting a device discovered by the Bluetooth scanner."""
         if user_input is not None:
-            address = _normalise_address(user_input[CONF_ADDRESS])
-            await self.async_set_unique_id(address)
+            address = user_input[CONF_ADDRESS]
+            await self.async_set_unique_id(
+                format_mac(address), raise_on_progress=False
+            )
             self._abort_if_unique_id_configured()
-            title = self._discovered_devices.get(address)
-            if title is None:
-                title = f"USTONE BLE {address.replace(':', '')[-6:]}"
             return self.async_create_entry(
-                title=title,
+                title=self._discovered_devices[address],
                 data={CONF_ADDRESS: address},
             )
 
+        await bluetooth.async_request_active_scan(self.hass)
+        current_ids = {
+            format_mac(address)
+            for address in self._async_current_ids(include_ignore=False)
+            if address is not None
+        }
+        discovered_ids = {
+            format_mac(address) for address in self._discovered_devices
+        }
         for discovery_info in async_discovered_service_info(self.hass, False):
+            address = discovery_info.address
+            formatted_address = format_mac(address)
+            if formatted_address in current_ids or formatted_address in discovered_ids:
+                continue
             try:
                 advertisement = parse_advertisement(discovery_info)
             except UstoneProtocolError:
                 continue
-            address = discovery_info.address
             self._discovered_devices[address] = (
                 f"{advertisement.model_name} {address[-5:].replace(':', '')}"
             )
+            discovered_ids.add(formatted_address)
+
+        if not self._discovered_devices:
+            return self.async_abort(reason="no_devices_found")
 
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
-                {
-                    vol.Required(CONF_ADDRESS): vol.All(
-                        vol.Coerce(str), _normalise_address
-                    )
-                }
+                {vol.Required(CONF_ADDRESS): vol.In(self._discovered_devices)}
             ),
         )

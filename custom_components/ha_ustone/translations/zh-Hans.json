@@ -3,8 +3,8 @@
     "step": {
       "user": {
         "title": "添加 USTONE BLE 设备",
-        "description": "输入设备 MAC 地址。已发现的设备也可以直接输入其地址。",
-        "data": {"address": "MAC 地址"}
+        "description": "选择蓝牙扫描到的 USTONE BLE 设备。",
+        "data": {"address": "设备地址"}
       },
       "bluetooth_confirm": {
         "title": "发现 USTONE BLE 设备",
@@ -21,7 +21,8 @@
     },
     "abort": {
       "already_configured": "设备已经配置。",
-      "not_supported": "不是受支持的 USTONE BLE 广播。"
+      "not_supported": "不是受支持的 USTONE BLE 广播。",
+      "no_devices_found": "没有发现可用的 USTONE BLE 设备。"
     }
   },
   "entity": {

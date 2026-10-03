@@ -110,8 +110,14 @@ def _entry_and_address(call: ServiceCall) -> tuple[UstoneConfigEntry, str]:
             translation_domain=DOMAIN,
             translation_key="invalid_device_id",
         )
-    address = format_mac(address)
-    entry = call.hass.config_entries.async_entry_for_domain_unique_id(DOMAIN, address)
+    unique_id = format_mac(address)
+    entry = call.hass.config_entries.async_entry_for_domain_unique_id(
+        DOMAIN, unique_id
+    )
+    if entry is None and unique_id != address:
+        entry = call.hass.config_entries.async_entry_for_domain_unique_id(
+            DOMAIN, address
+        )
     if entry is None or entry.state is not ConfigEntryState.LOADED:
         raise ServiceValidationError(
             translation_domain=DOMAIN,

@@ -93,7 +93,7 @@ class UstoneCoordinator(PassiveBluetoothProcessorCoordinator[UstoneAdvertisement
     @callback
     def _notify_state_listeners(self) -> None:
         """Notify non-passive entities such as the device tracker."""
-        for listener in tuple(self._state_listeners):
+        for listener in self._state_listeners:
             listener()
 
 

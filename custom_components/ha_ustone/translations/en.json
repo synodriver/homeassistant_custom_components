@@ -3,8 +3,8 @@
     "step": {
       "user": {
         "title": "Add USTONE BLE device",
-        "description": "Enter the device MAC address. You can also enter a discovered address.",
-        "data": {"address": "MAC address"}
+        "description": "Select a USTONE BLE device discovered by the Bluetooth scanner.",
+        "data": {"address": "Device address"}
       },
       "bluetooth_confirm": {
         "title": "USTONE BLE device discovered",
@@ -21,7 +21,8 @@
     },
     "abort": {
       "already_configured": "This device is already configured.",
-      "not_supported": "The advertisement is not a supported USTONE BLE frame."
+      "not_supported": "The advertisement is not a supported USTONE BLE frame.",
+      "no_devices_found": "No supported USTONE BLE devices were found."
     }
   },
   "entity": {

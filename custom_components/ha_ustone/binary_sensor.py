@@ -58,7 +58,7 @@ def binary_sensor_update_to_bluetooth_data_update(
         key: value
         for key, value in advertisement.values.items()
         if isinstance(value, bool)
-    }
+    } # 筛选bool值
     entity_data = {
         PassiveBluetoothEntityKey(key, None): value for key, value in values.items()
     }
