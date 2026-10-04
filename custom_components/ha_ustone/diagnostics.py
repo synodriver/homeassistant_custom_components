@@ -2,8 +2,10 @@
 
 from typing import Any
 
-from homeassistant.core import HomeAssistant
 from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import CONF_ADDRESS
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.device_registry import format_mac
 
 from .coordinator import UstoneCoordinator
 
@@ -14,6 +16,14 @@ async def async_get_config_entry_diagnostics(
     """Return the latest parsed advertisement and coordinator state."""
     coordinator = entry.runtime_data
     advertisement = coordinator.latest
+    if advertisement is not None:
+        name = advertisement.name
+        # HA 在没有本地名时会以地址作名称，macOS 的地址也可能是 UUID。
+        if format_mac(name.casefold()) in {
+            format_mac(entry.data[CONF_ADDRESS].casefold()),
+            format_mac(advertisement.address.casefold()),
+        }:
+            name = "**REDACTED**"
     return {
         "entry_id": entry.entry_id,
         "address": "**REDACTED**",
@@ -21,7 +31,7 @@ async def async_get_config_entry_diagnostics(
         "last_seen": coordinator.last_seen,
         "advertisement": (
             {
-                "name": advertisement.name,
+                "name": name,
                 "model": advertisement.model.value,
                 "rssi": advertisement.rssi,
                 "connectable": advertisement.connectable,

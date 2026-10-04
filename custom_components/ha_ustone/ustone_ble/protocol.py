@@ -108,13 +108,16 @@ def decode_payload(payload: bytes) -> tuple[UstoneModel, dict[str, int | float |
     return model, values
 
 
-def _payload_from_source(source: Any) -> bytes:
-    """Extract USTONE manufacturer data from raw bytes or service info."""
+def _payload_from_source(source: Any, *, raw_advertisement: bool) -> bytes:
+    """Extract manufacturer data using the explicitly selected input format."""
     if isinstance(source, (bytes, bytearray, memoryview)):
         data = bytes(source)
-        if data[:2] == b"\x03\x08":
+        if raw_advertisement:
             return _payload_from_raw_advertisement(data)
         return data
+
+    if raw_advertisement:
+        raise UstoneProtocolError("raw advertising data must be bytes")
 
     manufacturer_data = (
         source
@@ -131,14 +134,16 @@ def _payload_from_source(source: Any) -> bytes:
 def parse_advertisement(
     source: Any,
     *,
+    raw_advertisement: bool = False,
     address: str | None = None,
     name: str | None = None,
     rssi: int | None = None,
     connectable: bool | None = None,
     service_uuids: Sequence[str] | None = None,
 ) -> UstoneAdvertisement:
-    """Parse manufacturer data or a Home Assistant Bluetooth service-info object."""
-    payload = _payload_from_source(source)
+    """Parse manufacturer data; select raw_advertisement for complete BLE AD bytes."""
+    # 厂商前缀内容未知，不能靠起始字节猜测是否为完整广播。
+    payload = _payload_from_source(source, raw_advertisement=raw_advertisement)
     model, values = decode_payload(payload)
     return UstoneAdvertisement(
         address=address or str(getattr(source, "address", "")),

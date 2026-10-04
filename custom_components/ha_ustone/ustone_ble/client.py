@@ -26,6 +26,10 @@ class UstoneCharacteristicNotFoundError(UstoneClientError):
 class UstoneClient:
     """Connect, write one JSON command, collect a response, and disconnect."""
 
+    def __init__(self) -> None:
+        """Serialize GATT transactions for this device."""
+        self._operation_lock = asyncio.Lock()
+
     async def async_write_config(
         self,
         device: BLEDevice,
@@ -33,6 +37,16 @@ class UstoneClient:
         timeout: float = 30.0,
     ) -> bytes:
         """Write a BSH1-style configuration object over Nordic UART."""
+        async with self._operation_lock:
+            return await self._async_write_config(device, config, timeout)
+
+    async def _async_write_config(
+        self,
+        device: BLEDevice,
+        config: dict[str, object],
+        timeout: float,
+    ) -> bytes:
+        """Run one transaction while holding the device lock."""
         client = await establish_connection(
             BleakClientWithServiceCache,
             device,
@@ -60,8 +74,17 @@ class UstoneClient:
             payload = json.dumps(
                 {"config": config}, ensure_ascii=False, separators=(",", ":")
             ).encode()
-            write_with_response = "write" in (getattr(rx, "properties", ()) or ())
-            await client.write_gatt_char(rx, payload, response=write_with_response)
+            write_with_response = "write" in rx.properties
+            write_size = (
+                512 if write_with_response else rx.max_write_without_response_size
+            )
+            # UART 按字节流分包；固件能否组装完整 JSON 尚待真机确认。
+            for offset in range(0, len(payload), write_size):
+                await client.write_gatt_char(
+                    rx,
+                    payload[offset : offset + write_size],
+                    response=write_with_response,
+                )
             try:
                 async with asyncio.timeout(timeout):
                     await response_received.wait()

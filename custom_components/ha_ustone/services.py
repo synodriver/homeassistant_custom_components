@@ -38,29 +38,29 @@ from .ustone_ble import UstoneClientError, UstoneCharacteristicNotFoundError
 _CONFIG_SCHEMA = vol.Schema(
     {
         vol.Optional("adv_interval"): vol.All(
-            vol.Coerce(int), vol.Range(min=20, max=10240), str
+            vol.Coerce(int), vol.Range(min=20, max=10240), vol.Coerce(str)
         ),
         vol.Optional("adv_timeout"): vol.All(
-            vol.Coerce(int), vol.Range(min=1000, max=160000), str
+            vol.Coerce(int), vol.Range(min=1000, max=160000), vol.Coerce(str)
         ),
         vol.Optional("work_mode"): cv.boolean,
         vol.Optional("respond_delay"): vol.All(
-            vol.Coerce(int), vol.Range(min=20, max=400), str
+            vol.Coerce(int), vol.Range(min=20, max=400), vol.Coerce(str)
         ),
         vol.Optional("det_range"): vol.All(
-            vol.Coerce(int), vol.Range(min=0, max=16), str
+            vol.Coerce(int), vol.Range(min=0, max=16), vol.Coerce(str)
         ),
         vol.Optional("micro_threshold"): vol.All(
-            vol.Coerce(int), vol.Range(min=0, max=31), str
+            vol.Coerce(int), vol.Range(min=0, max=31), vol.Coerce(str)
         ),
         vol.Optional("det_capability"): vol.All(
-            vol.Coerce(int), vol.Range(min=1, max=6), str
+            vol.Coerce(int), vol.Range(min=1, max=6), vol.Coerce(str)
         ),
         vol.Optional("micro_filter"): vol.All(
-            vol.Coerce(int), vol.Range(min=0, max=4), str
+            vol.Coerce(int), vol.Range(min=0, max=4), vol.Coerce(str)
         ),
         vol.Optional("hold_time"): vol.All(
-            vol.Coerce(int), vol.Range(min=0, max=600), str
+            vol.Coerce(int), vol.Range(min=0, max=600), vol.Coerce(str)
         ),
     },
     extra=vol.ALLOW_EXTRA,
@@ -111,9 +111,7 @@ def _entry_and_address(call: ServiceCall) -> tuple[UstoneConfigEntry, str]:
             translation_key="invalid_device_id",
         )
     unique_id = format_mac(address)
-    entry = call.hass.config_entries.async_entry_for_domain_unique_id(
-        DOMAIN, unique_id
-    )
+    entry = call.hass.config_entries.async_entry_for_domain_unique_id(DOMAIN, unique_id)
     if entry is None and unique_id != address:
         entry = call.hass.config_entries.async_entry_for_domain_unique_id(
             DOMAIN, address

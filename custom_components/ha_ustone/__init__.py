@@ -1,14 +1,18 @@
 """The USTONE BLE integration."""
 
+import logging
+
 from homeassistant.config import ConfigType
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_ADDRESS
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.device_registry import format_mac
 
-from .const import PLATFORMS
+from .const import DOMAIN, PLATFORMS
 from .coordinator import UstoneCoordinator
 from .services import async_setup_services
+
+_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
@@ -20,9 +24,24 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
 async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Migrate config entries to canonical Bluetooth unique IDs."""
     if entry.version < 2:
+        unique_id = format_mac(entry.data[CONF_ADDRESS])
+        for other_entry in hass.config_entries.async_entries(DOMAIN):
+            if (
+                other_entry.entry_id != entry.entry_id
+                and other_entry.unique_id is not None
+                and format_mac(other_entry.unique_id) == unique_id
+            ):
+                _LOGGER.error(
+                    "Cannot migrate USTONE entry %s: canonical unique ID %s "
+                    "conflicts with entry %s",
+                    entry.entry_id,
+                    unique_id,
+                    other_entry.entry_id,
+                )
+                return False
         hass.config_entries.async_update_entry(
             entry,
-            unique_id=format_mac(entry.data[CONF_ADDRESS]),
+            unique_id=unique_id,
             version=2,
         )
     return True
